@@ -1,4 +1,4 @@
-
+#include "genetic.h"
 #include "data.h"
 #include "dataloader.h"
 #include <catch.hpp>
@@ -27,8 +27,17 @@ TEST_CASE("Computing distance matrix", "[data_loader]"){
 	std::string fpath("att48.tsp");
 	auto cityVector = loadDataFromFile(fpath);
 	auto distMatrix = createDistanceMatrix(cityVector);
-	std::cout << distMatrix.size() << std::endl;
-	double tmpDist = distMatrix.at(std::make_pair(cityVector.at(0),cityVector.at(1)));
-	REQUIRE(cityVector.size() > 0);
-	REQUIRE(tmpDist == 0);
+	std::cout << "No of city distances: " << distMatrix.size() << std::endl;
+	//double tmpDist = distMatrix.at(std::make_pair(cityVector.at(0),cityVector.at(1)));
+	REQUIRE(distMatrix.size() == cityVector.size() * cityVector.size());
+	//REQUIRE(tmpDist == 0);
+}
+
+TEST_CASE("Creating random candidate", "[ga_init]"){
+	std::string fpath("att48.tsp");
+	auto cityVector = loadDataFromFile(fpath);
+	auto rndCandidate = generateRandomCandidate(cityVector);
+	CHECK(rndCandidate.size() == cityVector.size());
+//	for(int i = 0 ; i < cityVector.size() ; i++)
+//		std::cout << cityVector[i] << " | " << rndCandidate[i] << std::endl;
 }

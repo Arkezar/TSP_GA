@@ -36,10 +36,8 @@ std::unordered_map< std::pair<City,City>, double, pairhash >
 		std::unordered_map< std::pair<City,City>, double, pairhash > matrix;
 		for(const auto& c1 : cityCoordinatesVector){
 			for(const auto& c2 : cityCoordinatesVector){
-				std::cout << c1 << std::endl;
-				std::cout << c2 << std::endl;
-
 				matrix.emplace(std::make_pair(std::make_pair(c1,c2), c1.computeDistance(c2)) );
 			}
 		}
+		return matrix;
 	}

@@ -1,4 +1,5 @@
 !_TAG_FILE_SORTED	2	/0=unsorted, 1=sorted, 2=foldcase/
+candidateEvaluation	/home/arkezar/cpp/TSP_GA/genetic.h	/^double candidateEvaluation(const std::vector<City>& candidate, const std::unordered_map< std::pair<City, City>, double, pairhash>& distances);$/;"	p	language:C++
 CATCH_CONFIG_RUNNER	/home/arkezar/cpp/TSP/tsp.cpp	1;"	d	language:C++	file:
 City	/home/arkezar/cpp/TSP/data.h	/^		City(int x, int y):x(x),y(y){};$/;"	f	language:C++	class:City
 City	/home/arkezar/cpp/TSP/data.h	/^class City{$/;"	c	language:C++
@@ -7,13 +8,18 @@ computeDistance	/home/arkezar/cpp/TSP/data.cpp	/^double City::computeDistance(co
 computeDistance	/home/arkezar/cpp/TSP/data.h	/^		double computeDistance(const City&) const;$/;"	p	language:C++	class:City
 createDistanceMatrix	/home/arkezar/cpp/TSP/dataloader.cpp	/^	createDistanceMatrix(const std::vector<City>& cityCoordinatesVector){$/;"	f	language:C++
 createDistanceMatrix	/home/arkezar/cpp/TSP/dataloader.h	/^	createDistanceMatrix(const std::vector<City>&);$/;"	p	language:C++
+createDistanceMatrix	/home/arkezar/cpp/TSP_GA/dataloader.cpp	/^	createDistanceMatrix(const std::vector<City>& cityCoordinatesVector){$/;"	f	language:C++
 DL_H	/home/arkezar/cpp/TSP/dataloader.h	2;"	d	language:C++
+GA_H	/home/arkezar/cpp/TSP_GA/genetic.h	2;"	d	language:C++
+generateRandomCandidate	/home/arkezar/cpp/TSP_GA/genetic.cpp	/^std::vector<City> generateRandomCandidate(std::vector<City> cities){$/;"	f	language:C++
+generateRandomCandidate	/home/arkezar/cpp/TSP_GA/genetic.h	/^std::vector<City> generateRandomCandidate(std::vector<City> cities);$/;"	p	language:C++
 getX	/home/arkezar/cpp/TSP/data.cpp	/^int City::getX() const{$/;"	f	language:C++	class:City
 getX	/home/arkezar/cpp/TSP/data.h	/^		int getX() const;$/;"	p	language:C++	class:City
 getY	/home/arkezar/cpp/TSP/data.cpp	/^int City::getY() const{$/;"	f	language:C++	class:City
 getY	/home/arkezar/cpp/TSP/data.h	/^		int getY() const;$/;"	p	language:C++	class:City
 loadDataFromFile	/home/arkezar/cpp/TSP/dataloader.cpp	/^std::vector<City> loadDataFromFile(const std::string& filePath){$/;"	f	language:C++
 loadDataFromFile	/home/arkezar/cpp/TSP/dataloader.h	/^std::vector<City> loadDataFromFile(const std::string&);$/;"	p	language:C++
+loadDataFromFile	/home/arkezar/cpp/TSP_GA/dataloader.cpp	/^std::vector<City> loadDataFromFile(const std::string& filePath){$/;"	f	language:C++
 main	/home/arkezar/cpp/TSP/tsp.cpp	/^int main(int argc, char *argv[]){$/;"	f	language:C++
 operator ()	/home/arkezar/cpp/TSP/dataloader.h	/^		size_t operator()(std::pair<City,City> key) const{$/;"	f	language:C++	struct:pairhash
 operator <<	/home/arkezar/cpp/TSP/data.h	/^static std::ostream& operator<<(std::ostream& out, const City& c){$/;"	f	language:C++
