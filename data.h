@@ -15,7 +15,7 @@ class City{
 static bool operator==(const City& lhs, const City& rhs){
 	return lhs.getX() == rhs.getX() && lhs.getY() == rhs.getY();
 };
-static std::ostream& operator<<(std::ostream& out, const City& c){
+inline std::ostream& operator<<(std::ostream& out, const City& c){
 			out << "City " << c.getX() << " " << c.getY();
 			return out;
 		}
