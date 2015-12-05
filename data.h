@@ -7,7 +7,10 @@ class City{
 		int y;
 	public:
 		City(int x, int y):x(x),y(y){};
-		
+		City(){
+			x = -1;
+			y = -1;
+		};
 		double computeDistance(const City&) const;
 		int getX() const;
 		int getY() const;
