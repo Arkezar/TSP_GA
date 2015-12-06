@@ -44,7 +44,7 @@ TEST_CASE("Creating random candidate", "[ga_init]"){
 }
 
 TEST_CASE("Create GA instance", "[ga_init]"){
-	GA gaInst("att48.tsp",1000, 10, 1000,15);
+	GA gaInst("att48.tsp",1000, 10, 1000,15, 4);
 	CHECK(gaInst.getPopulation().size() == 1000);
 	double fitnessSum = 0;
 	for(const auto& c : gaInst.getPopulation()){

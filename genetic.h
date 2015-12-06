@@ -4,6 +4,7 @@
 #include <unordered_map>
 #include "data.h"
 #include "dataloader.h"
+#include <SDL2/SDL.h>
 // INIT - create random candidate solutions X
 // EVALUATE each candidate X
 // WHILE( I < GENERATION NUMBER  )
@@ -37,6 +38,10 @@ class Candidate{
 		std::vector<City>& getCandidate(){
 			return candidate;
 		}
+		std::vector<City> getCandidate() const{
+			return candidate;
+		}
+
 		void ReEvaluate(const std::unordered_map< std::pair<City, City>, double, pairhash>& distances){
 			totalDistance = candidateEvaluation(candidate,distances);
 		}
@@ -67,10 +72,11 @@ inline std::ostream& operator<<(std::ostream& out, const Candidate& c){
 			out << "Total Distance: " << c.getTotalDistance() << " Fitness: " << c.getFitness();	
 			return out;
 		}
-static bool operator<(const Candidate& lhs, const Candidate& rhs){
+inline bool operator<(const Candidate& lhs, const Candidate& rhs){
 	return lhs.getFitness() < rhs.getFitness();
 };
-/*static bool operator==(const Candidate& lhs, const Candidate& rhs){
+
+inline bool operator==(const Candidate& lhs, const Candidate& rhs){
 	bool result = true;
 	for(int i = 0; i < lhs.getCandidate().size(); i++){
 		if(lhs.getCandidate().at(i) == lhs.getCandidate().at(i)){
@@ -82,7 +88,7 @@ static bool operator<(const Candidate& lhs, const Candidate& rhs){
 		}
 	}
 	return lhs.getFitness() < rhs.getFitness();
-};*/
+};
 
 
 class GA{
@@ -90,7 +96,11 @@ class GA{
 		int populationSize;
 		int populationBreadersPercentage;
 		int mutationPercentage;
+		int mutationPower;
 		int targetGenerationNumber;
+		int currentGeneration;
+		int maxXPosition;
+		int maxYPosition;
 		std::unordered_map< std::pair<City, City>, double, pairhash> distances;
 		std::vector<City> baseCityVector; //probably I don't need this
 		std::vector<Candidate> population;
@@ -103,12 +113,19 @@ class GA{
 		
 		void SortCandidates();
 		void SelectParents(int);
+		Candidate PMXCrossover(const Candidate& p1, const Candidate& p2);
+		int PMXCrossover_FindDestPosition(const std::vector<City>& p1cities, const std::vector<City>& p2cities, const int& startPos, const int& endPos, int currentPos);
 		void CycleCrossover(Candidate p1, Candidate p2);
 		void CycleCrossover_MixGenes(std::vector<City>& p1, std::vector<City>& p2, int& currentGene, const int& startingGene);
-		void Mutate(Candidate& c);
+		void Mutate(Candidate& c, int mutationPower);
 	public:
-		GA(std::string filePath, int populationSize, int breedersPercentage, int targetGeneration, int muationPercenage)
-			:populationSize(populationSize),populationBreadersPercentage(breedersPercentage), mutationPercentage(mutationPercentage),targetGenerationNumber(targetGeneration){
+		GA(std::string filePath, int populationSize, int breedersPercentage, int targetGeneration, int mutationPercentage, int mutationPower)
+			:populationSize(populationSize),
+			populationBreadersPercentage(breedersPercentage), 
+			mutationPercentage(mutationPercentage),
+			mutationPower(mutationPower),
+			targetGenerationNumber(targetGeneration)
+			{
 			Initialize(filePath);
 			NormalizeCandidates();
 		}
@@ -125,7 +142,12 @@ class GA{
 			return parentsPopulation;
 		}
 
+//		void Execute(SDL_Renderer *renderer);
 		void Execute();
+
+		int getCurrentGeneration() const {
+			return currentGeneration;
+		}
 };
 
 #endif

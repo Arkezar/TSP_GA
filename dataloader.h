@@ -8,10 +8,10 @@
 struct pairhash {
 	public:
 		size_t operator()(std::pair<City,City> key) const{
-			return std::hash<int>()(key.first.getX()) ^
-				std::hash<int>()(key.first.getY()) ^
-				std::hash<int>()(key.second.getX()) ^
-				std::hash<int>()(key.second.getY());
+			return std::hash<double>()(key.first.getX()) ^
+				std::hash<double>()(key.first.getY()) ^
+				std::hash<double>()(key.second.getX()) ^
+				std::hash<double>()(key.second.getY());
 		}
 };
 
